@@ -10,9 +10,9 @@ This is a simple Solidity smart contract, "SimpleStorage.sol", that demonstrate 
 - Mappings
 - Memory, calldata, and storage
   - EVM can access and store information in six places:
-      1. Stack
-      2. Memory
-      3. Storage
-      4. Calldata
-      5. Code
-      6. Logs
+    1. Stack
+    2. Memory
+    3. Storage
+    4. Calldata
+    5. Code
+    6. Logs
