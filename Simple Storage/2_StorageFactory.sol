@@ -12,7 +12,9 @@ contract StorageFactory {
         listOfSimpleStorageContracts.push(newSimpleStorageContract);
     }
 
-    function sfStore(uint256 _simpleStorageIndex, uint256 _newSimpleStorageNumber) public {
+    function sfStore(
+    uint256 _simpleStorageIndex,
+    uint256 _newSimpleStorageNumber) public {
         listOfSimpleStorageContracts[_simpleStorageIndex].store(_newSimpleStorageNumber);
         // SimpleStorage mySimpleStorage = listOfSimpleStorageContracts[_simpleStorageIndex];
         // mySimpleStorage.store(_newSimpleStorageNumber);
