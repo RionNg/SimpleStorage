@@ -25,5 +25,4 @@ contract StorageFactory {
         // SimpleStorage mySimpleStorage = listOfSimpleStorageContracts[_simpleStorageIndex];
         // return mySimpleStorage.retrieve();
     }
-
 }
