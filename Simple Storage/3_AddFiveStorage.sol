@@ -10,5 +10,4 @@ contract AddFiveStorage is SimpleStorage {
     function store(uint256 _newNumber) public override {
         myFavoriteNumber = _newNumber + 5;
     }
-
 }
