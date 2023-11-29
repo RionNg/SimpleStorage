@@ -1,13 +1,17 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.22;
+pragma solidity ^0.8.18;
 
-import {SimpleStorage} from "./1_SimpleStorage.sol";
+import {SimpleStorage} from "./SimpleStorage.sol";
 
 contract AddFiveStorage is SimpleStorage {
-    // + 5
+    // +5
     // overrides: virtual / override
-    function store(uint256 _newNumber) public override {
-        myFavoriteNumber = _newNumber + 5;
+    // virtual = used in the BASE CONTRACT to allow derived contracts to 'override' a function.
+    // override = used in the DERIVED contract to explicitly indicate that a function
+    //            is intended to override a 'virtual' function in the base contract.
+
+    function store(uint256 _newFavoriteNumber) public override {
+        myFavoriteNumber = _newFavoriteNumber + 5;
     }
 }
