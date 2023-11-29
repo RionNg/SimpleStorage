@@ -1,13 +1,16 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity 0.8.22;
+pragma solidity ^0.8.18;
 
 contract SimpleStorage {
-    uint256 public myFavoriteNumber = 0;
 
+    uint256 myFavoriteNumber;
+
+    // uint256[] listOfFavoriteNumbers;
     struct Person {
         uint256 favoriteNumber;
         string name;
+        string message;
     }
 
     // dynamic array
@@ -16,28 +19,31 @@ contract SimpleStorage {
     // static array
     // Person[3] public listOfPeople;
 
-    // This isn't a great way to create lists for people.
+    // Below list isn't a great way to create lists for people.
     // Imagine you have more than 10 friends.
-    // Person public pat = Person({favoriteNumber: 7, name: "pat"});
-    // Person public mariah = Person({favoriteNumber: 16, name: "Mariah"});
-    // Person public jon = Person({favoriteNumber: 12, name: "Jon"});
+    // Person public pat = Person({favoriteNumber: 7, name: "Pat", message: "Hello!"});
+    // Person public bob = Person({favoriteNumber: 9, name: "Bob", message: "Nail it!"});
+    // Person public jon = Person({favoriteNumber: 3, name: "Jon", message: "The King!"});
 
-    mapping(string => uint256) public nameToFavoriteNumber;
-
-    function store(uint256 _favoriteNumber) public virtual {
+    function store(uint256 _favoriteNumber) public {
         myFavoriteNumber = _favoriteNumber;
     }
 
+    // view = indicating that they will not modify the state of the contract.
+    //      = Use 'view' for functions that need to read the state of the contract but DO NOT modify it
+    // pure = indicating that they will not read or modify the state of the contract.
+    //      = Use 'pure' for functions that neither read nor modify the state and only depend on provided parameters.
     function retrieve() public view returns(uint256) {
         return myFavoriteNumber;
     }
-    
+
     function addPerson(
+        uint256 _favoriteNumber, 
         string memory _name, 
-        uint256 _favoriteNumber
-        ) public 
-    {
-        listOfPeople.push( Person(_favoriteNumber, _name) );
-        nameToFavoriteNumber[_name] = _favoriteNumber;
+        string memory _message
+        ) public {
+            listOfPeople.push(
+                Person(_favoriteNumber, _name, _message)
+            );
     }
 }
