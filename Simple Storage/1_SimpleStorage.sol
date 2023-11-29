@@ -8,14 +8,13 @@ contract SimpleStorage {
 
     // uint256[] listOfFavoriteNumbers;
     struct Person {
-        uint256 favoriteNumber;
         string name;
-        string message;
+        uint256 favoriteNumber;
     }
 
+    // --- array ---
     // dynamic array
     Person[] public listOfPeople;
-
     // static array
     // Person[3] public listOfPeople;
 
@@ -25,10 +24,19 @@ contract SimpleStorage {
     // Person public bob = Person({favoriteNumber: 9, name: "Bob", message: "Nail it!"});
     // Person public jon = Person({favoriteNumber: 3, name: "Jon", message: "The King!"});
 
+    // --- mapping ---
+    // 'mapping' is a key-value store that is often used to create associative arrays or dictionaries.
+    // It allows you to efficiently store and retrieve data based on a unique key.
+    // Mappings are generally more gas-efficient than arrays for lookups.
+    // But they have some limitations, such as not being directly iterable.
+    mapping(string => uint256) public nameToFavoriteNumber;
+    // mapping(key => value)
+
     function store(uint256 _favoriteNumber) public {
         myFavoriteNumber = _favoriteNumber;
     }
 
+    // --- 'view', 'pure' ---
     // view = indicating that they will not modify the state of the contract.
     //      = Use 'view' for functions that need to read the state of the contract but DO NOT modify it
     // pure = indicating that they will not read or modify the state of the contract.
@@ -37,13 +45,21 @@ contract SimpleStorage {
         return myFavoriteNumber;
     }
 
+    // --- calldata, memory, storage ---
+    // different areas where you can store data in EVM:
+    // calldata - for function parameters and external call data.
+    //          - 'calldata' is temporary variables that CANNOT be modified.
+    // memory - for temporary data within a function execution. 
+    //        - 'memory' is temporary variables that CAN be modified.
+    // storage - for persistently storing contract STATE variales.
+    //         - 'storage' is permanent variables that can be modified.
     function addPerson(
-        uint256 _favoriteNumber, 
-        string memory _name, 
-        string memory _message
+        string memory _name,
+        uint256 _favoriteNumber
         ) public {
             listOfPeople.push(
-                Person(_favoriteNumber, _name, _message)
+                Person(_name, _favoriteNumber)
             );
+            nameToFavoriteNumber[_name] = _favoriteNumber;
     }
 }
