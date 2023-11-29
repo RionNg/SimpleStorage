@@ -13,6 +13,9 @@ contract SimpleStorage {
     // dynamic array
     Person[] public listOfPeople;
 
+    // static array
+    // Person[3] public listOfPeople;
+
     // This isn't a great way to create lists for people.
     // Imagine you have more than 10 friends.
     // Person public pat = Person({favoriteNumber: 7, name: "pat"});
